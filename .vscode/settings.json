@@ -1,0 +1,5 @@
+{
+    "phpstan.binPath": "${workspaceFolder}/vendor/bin/phpstan",
+    "phpstan.configFile": "${workspaceFolder}/phpstan.neon",
+    "phpstan.showTypeOnHover": true,
+}

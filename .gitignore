@@ -1,0 +1,43 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Composer
+composer.phar
+composer.lock
+
+# Environment / secrets
+.env
+.env.local
+*.local
+
+# IDE / editor
+.vscode/*
+!.vscode/settings.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+debug.log
+/logs
+
+# PHPStan / testing cache
+.phpstan.cache/
+.phpunit.cache/
+/coverage/
+
+# Build artifacts
+/dist/
+/build/
+*.zip
+
+# WordPress-specific (por si el plugin se prueba dentro de un WP local)
+wp-config.php
+wp-content/uploads/
