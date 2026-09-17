@@ -57,7 +57,7 @@ final class AmigoPluginAuditor extends AmigoBaseAuditor
 
     return [
       'audit' => $audit,
-      'total_vulnerabilities' => array_reduce($audit, fn($carry, $current) => $carry + count($current), 0),
+      'total_vulnerabilities' => array_reduce($audit, fn($carry, $current) => $carry + count($current['vulnerabilities'] ?? []), 0),
     ];
   }
 
