@@ -4,7 +4,7 @@
  * Plugin Name:       WP Amigo Manage
  * Plugin URI:        https://wpamigo.com/
  * Description:       Auditor de inventario y vulnerabilidades para el core, plugins y temas de WordPress
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires PHP:      8.0
  * Requires at least: 6.0
  * Author:            BlueTide
