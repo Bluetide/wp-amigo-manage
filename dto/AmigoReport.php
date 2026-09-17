@@ -34,6 +34,7 @@ class AmigoReport
     {
         return [
             'website'     => get_site_url(),
+            'send_to'     => get_option('wp_amigo_notification_email', get_option('admin_email')),
             'summary'     => $this->summary(),
             'details'        => [
                 'core'        => $this->core,
@@ -52,24 +53,17 @@ class AmigoReport
      */
     private function summary(): array
     {
-        $total_vulnerabilities = 0;
-        $total_components_to_update   = 0;
+        $total_vulnerabilities = $this->core['total_vulnerabilities'] + $this->themes['total_vulnerabilities'] + $this->plugins['total_vulnerabilities'];
 
-        if (!empty($this->core['vulnerabilities']) && is_array($this->core['vulnerabilities'])) {
-            $total_vulnerabilities += count($this->core['vulnerabilities']);
-        }
+        $total_components_to_update = 0;
 
-        if (isset($this->core['maybe_latest']) && !$this->core['maybe_latest']) {
+        if (isset($this->core['audit']['maybe_latest']) && !$this->core['audit']['maybe_latest']) {
             $total_components_to_update++;
         }
 
         foreach ($this->plugins as $plugin):
 
-            if (!empty($plugin['vulnerabilities']) && is_array($plugin['vulnerabilities'])) {
-                $total_vulnerabilities += count($plugin['vulnerabilities']);
-            }
-
-            if (isset($plugin['maybe_latest']) && !$plugin['maybe_latest']) {
+            if (isset($plugin['audit']['maybe_latest']) && !$plugin['audit']['maybe_latest']) {
                 $total_components_to_update++;
             }
 
@@ -77,11 +71,7 @@ class AmigoReport
 
         foreach ($this->themes as $theme):
 
-            if (!empty($theme['vulnerabilities']) && is_array($theme['vulnerabilities'])) {
-                $total_vulnerabilities += count($theme['vulnerabilities']);
-            }
-
-            if (isset($theme['maybe_latest']) && !$theme['maybe_latest']) {
+            if (isset($theme['audit']['maybe_latest']) && !$theme['audit']['maybe_latest']) {
                 $total_components_to_update++;
             }
 
